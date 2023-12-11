@@ -2,7 +2,7 @@
 /*
 Plugin Name: Replay Web Page with Lightbox
 Description: Display WACZ with lightbox player.
-Version: 0.2
+Version: 0.7
 Author: Starling Lab
 */
 
@@ -23,7 +23,7 @@ function add_script_to_head_starling_lightbox() {
     $plugin_dir_url = plugins_url('', __FILE__);
 //    wp_enqueue_script('custom-script', get_template_directory_uri() . '/custom-script.js', array(), '1.0', false);
     wp_enqueue_script('starling-replay-ui', 'https://cdn.jsdelivr.net/npm/replaywebpage@1.8.13/ui.js', array(), '1.0', false);
-    wp_enqueue_script('starling-replay-lightbox-ui', plugins_url('', __FILE__) . '/index-96c988fa.js', array(), '1.0', false);
+    wp_enqueue_script('starling-replay-lightbox-ui', plugins_url('', __FILE__) . '/index-a72ba76f.js', array(), '1.0', false);
     wp_register_style('starling-lightbox-css', plugins_url('', __FILE__) . '/index-31ef780a.css', array(), '1.0', 'all');
     wp_enqueue_style('starling-lightbox-css');
    
@@ -48,7 +48,7 @@ function display_wacz_lightbox($atts) {
     $plugin_dir_url = plugins_url('', __FILE__);
 
     //Attributes
-    $height = isset($atts['height']) ? $atts['height'] : "50vh";
+    // $height = isset($atts['height']) ? $atts['height'] : "50vh";
     $width = isset($atts['width']) ? $atts['width'] : "100%";
 
 
@@ -59,8 +59,21 @@ function display_wacz_lightbox($atts) {
     // Generate and return the replay-web-page control
     $ret = '<wacz-lightbox filename="' . $filename . '"  path="' . $directoryPath . '/"';
     $ret .= ' replayBase="' . $plugin_dir_url . "/replay/" . '"';
-    $ret .= ' style="height:' . $height . ';width:' . $width . ';display:block;"';
+    $ret .= ' style="width:' . $width . ';display:block;padding-bottom:10px;"';
     $ret .= '></wacz-lightbox>';
+    // set the height with a media query
+    $ret .= '<style>';
+    $ret .= '  @media (min-width:650px) {';
+    $ret .= '    wacz-lightbox {';
+    $ret .= '      height: 50vh';
+    $ret .= '    }';
+    $ret .= '  }';
+    $ret .= '  @media (max-width:649px) {';
+    $ret .= '    wacz-lightbox {';
+    $ret .= '      height: 85vh';
+    $ret .= '    }';
+    $ret .= '  }';
+    $ret .= '</style>';
 
     return $ret;    
 }
