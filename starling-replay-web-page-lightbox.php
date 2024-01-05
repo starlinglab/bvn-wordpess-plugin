@@ -2,7 +2,7 @@
 /*
 Plugin Name: Replay Web Page with Lightbox
 Description: Display WACZ with lightbox player.
-Version: 0.7
+Version: 0.8
 Author: Starling Lab
 */
 
@@ -23,7 +23,7 @@ function add_script_to_head_starling_lightbox() {
     $plugin_dir_url = plugins_url('', __FILE__);
 //    wp_enqueue_script('custom-script', get_template_directory_uri() . '/custom-script.js', array(), '1.0', false);
     wp_enqueue_script('starling-replay-ui', 'https://cdn.jsdelivr.net/npm/replaywebpage@1.8.13/ui.js', array(), '1.0', false);
-    wp_enqueue_script('starling-replay-lightbox-ui', plugins_url('', __FILE__) . '/index-a72ba76f.js', array(), '1.0', false);
+    wp_enqueue_script('starling-replay-lightbox-ui', plugins_url('', __FILE__) . '/index-4499ad55.js', array(), '1.0', false);
     wp_register_style('starling-lightbox-css', plugins_url('', __FILE__) . '/index-31ef780a.css', array(), '1.0', 'all');
     wp_enqueue_style('starling-lightbox-css');
    
